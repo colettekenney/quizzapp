@@ -21,7 +21,7 @@ var questionsArray = [
 	},
 	{
 		title: "What did Lily and Marshall name the weird rodent in their apartment?",
-		answers: ["  Cocamouse", "  Mouseroach", "  Ratacock", "  Cockamoo"],
+		answers: ["  Cockamouse", "  Mouseroach", "  Ratacock", "  Cockamoo"],
 		correct: 0
 	},
 	{
@@ -58,6 +58,7 @@ function displayQuestion() {
 	} else {
 		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
 		$(".quizAnswers ul").html("<button>Try Again?</button>");
+		$("#submit").hide();
 	}	
 }
 
@@ -84,6 +85,7 @@ $(".quizAnswers ul").on('click','button', function() {
 	curQuestion = 0;
 	$(".quizIntro").show();
 	$(".quizQuestions").hide();
+	displayQuestion();
 });
 
 });
