@@ -8,52 +8,59 @@
 	<link rel="shortcut icon" type="image/x-icon"  href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
 	<title>Colette Kenney</title>
 </head>
 <body>
 	<header> 
-		<!-- This is Introduction to the Quiz -->
-		<div class="intro">
-			<button id="start" type="button">Start Quiz</button>
-			<div id="himym">
-				<h3>How Well Do You Know</h5>
-				<h1>How I Met Your Mother</h3>
+		<div class="headerSection"></div>
+		<div class="quizSection">
+			<div class="quizWrapper">
+				<div class="quizIntro">
+					<h1>How Well Do You Know<br/>This Show?</h1>
+					<button class="start">Start Quiz</button>
+				</div>
+				<div class="quizQuestions">
+					<div id="track">
+						<i class="fa fa-circle-o"></i>
+						<i class="fa fa-circle"></i>
+						<i class="fa fa-circle"></i>
+						<i class="fa fa-circle"></i>
+						<i class="fa fa-circle"></i>
+					</div>
+					<div class="quizTitle">
+						<h2>This is where the question goes</h2>
+					</div>
+					<div id="quizAnswers">
+						
+						<ul>
+							<li><input type="radio" id="0" name="answer"/>
+			  				<label for="0">Answer</label></li>
+
+			  				<li><input type="radio" id="1" name="answer"/>
+			  				<label for="1">Answer</label></li>
+
+			  				<li><input type="radio" id="2" name="answer"/>
+			  				<label for="2">Answer</label>
+			  				</li>
+
+			  				<li><input type="radio" id="3" name="answer">
+			  				<label for="3">Answer</label></li>
+
+			  				<li><input type="radio" id="3" name="answer">
+			  				<label for="3">Answer</label></li>
+			  			</ul>	
+		  						  				
+		  				<input id="submit" type ="submit" value="Submit">
+					</div>
+				</div>	
 			</div>
 		</div>
-		<!-- This is the Quiz Container -->
-		<div class="quizContainer">
-			<!-- Track Progress -->
-			<div id="track">
-				<i class="fa fa-circle-o"></i>
-				<i class="fa fa-circle"></i>
-				<i class="fa fa-circle"></i>
-				<i class="fa fa-circle"></i>
-				<i class="fa fa-circle"></i>
-			</div>
-			<!-- Questions -->
-			<h3 class="item">What “Slap Bet” forfeit did Barney accept after prematurely slapping Marshall?</h3>
-			<!-- Answers -->
-			<form class="answers">
-  				<input id="radio" type="radio" name="answers" value="answers[0]">  5 slaps now, in a row
-<br>
-  				<input id="radio" type="radio" name="answers" value="answers[1]">  5 slaps that can be doled out from here to eternity<br>
-  				<input id="radio" type="radio" name="answers" value="answers[2]">  10 slaps right now, in a row<br>
-  				<input id="radio" type="radio" name="answers" value="answers[3]">  10 slaps that can be doled out from here to eternity<br>
-  				<br>
-  				<input type="checkbox" id="c1" name="cc" />
-				<label for="c1"><span></span>Check Box 1</label>
-				<br>
-				<br>
-
-  				<input id="radio" id="submit" type ="submit" value="Submit">
-			</form>
-
-			</div>
-			
-		</div>	
 	</header>
+		
 
 	</section>
-	
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>
