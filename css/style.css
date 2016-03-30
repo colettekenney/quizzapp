@@ -89,14 +89,14 @@ body {
 }
 
 .quizIntro {
-  display: none;
+  /*display: none;*/
   font-size: 36px;
   text-align: center;
   text-transform: uppercase;
 }
 
 .quizQuestions {
- /* display: none;*/
+ display: none;
  
 }
 
@@ -107,17 +107,17 @@ body {
 }
 
 
-#quizAnswers ul {
+.quizAnswers ul {
   margin-bottom: 38px;
   list-style: none;
   padding-left: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
-#quizAnswers ul input {
+.quizAnswers ul input {
   margin-top: 25px;
 }
 
-#quizAnswers ul label {
+.quizAnswers ul label {
   margin-left: 10px;
 }
 

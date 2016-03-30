@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-	$("#start").click(function() {
-		$(".intro").hide();
-		$(".quiz").show();
+	$(".start").click(function() {
+		$(".quizIntro").hide();
+		$(".quizQuestions").show();
 	});
 
 
-//This is the Questions Array that contains 5 objects//
+//This is the Questions Array that contains 5 objects
 
-/*var questionsArray = [
+var questionsArray = [
 	{
 		title: "What “Slap Bet” forfeit did Barney accept after prematurely slapping Marshall?",
 		answers: ["  5 slaps now in a row", "  5 slaps that can be doled out from here to eternity", "  10 slaps right now in a row", "  10 slaps that can be doled out from here to eternity"],
@@ -34,25 +34,56 @@ $(document).ready(function() {
 		answers: ["  Dowistrepla", "  SoHo", "  Nolita", "  TriBeCa"],
 		correct: 0
 	}
-],
+];
 
-//var score = 0;
-var currQuestion = 0;
+//These are Global Variables needed to run through the questionsArray
+//and keep track of the score
+
+var score = 0;
+var curQuestion = 0;
+
+//First we have to call the displayQuestion function:
 displayQuestion();
 
+//This is the displayQuestion() function:
 function displayQuestion() {
-	if (currQuestion < questionsArray.length) {
-		var objectNum = questionsArray[currQuestion];
-		$("h3.title").html(objectNum.title);
-		var answers = "";
-		for(i=0; i<objectNum.answers.length; i++) {
-			answers += "<li><input type='radio' id='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
+	if (curQuestion < questionsArray.length) {
+		var objectNum = questionsArray[curQuestion];
+		$(".quizTitle h2").html(objectNum.title);
+		var quizAnswers = "";
+		for(var i=0; i<objectNum.answers.length; i++) {
+			quizAnswers += "<li><input type='radio' id='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
 		}
-		$(".objectNum ul").html(answers);
+		$(".quizAnswers ul").html(quizAnswers);
 	} else {
-		$("h3.title").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
-		$(".objectNum ul").html("<button>Try Again?</button>");
+		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
+		$(".quizAnswers ul").html("<button>Try Again?</button>");
 	}	
 }
-*/
+
+//This is a jQuery function to receive the users quizAnswer once they click
+//Submit and then checkAnswer() function is called to check it and score it
+$(".quizAnswers").on('click','#submit',function() {
+	var userAnswer = $(':checked');
+	checkAnswer(userAnswer);
+});
+
+//This is the checkAnswer() function to check and score the user's answer
+function checkAnswer(userAnswer) {
+	var objectNum = questionsArray[curQuestion];
+	if (userAnswer == objectNum.correct) {
+		score++;
+	}
+	curQuestion++;
+	displayQuestion();
+}
+
+//This is jQuery function so the user can Try Again
+$(".quizAnswers ul").on('click','button', function() {
+	score = 0;
+	curQuestion = 0;
+	$(".quizIntro").show();
+	$(".quizQuestions").hide();
+});
+
 });
