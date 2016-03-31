@@ -93,6 +93,10 @@ body {
   background-color: #ceefef;
 }
 
+.start:focus {
+  outline: none;
+}
+
 .quizIntro {
   /*display: none;*/
   font-size: 36px;
@@ -126,6 +130,13 @@ body {
 
 .quizAnswers ul label {
   margin-left: 10px;
+}
+
+.centerButton {
+  text-align: center;
+}
+.quizAnswers button {
+  font-size: 22px;
 }
 
 #submit {

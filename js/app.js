@@ -61,7 +61,8 @@ function displayQuestion() {
 
 	else {
 		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
-		$(".quizAnswers ul").html("<button>Try Again?</button>");
+		$(".quizAnswers ul").html("");
+		$(".centerButton").html("<button>Try Again?</button>");
 		$("#submit").hide(); //This is needed to hide submit button when quiz done
 	}	
 }
@@ -70,7 +71,7 @@ function displayQuestion() {
 //Submit and then checkAnswer() function is called to check it and score it
 $(".quizAnswers").on('click','#submit',function() {
 	
-	var userAnswer = $(':checked');
+	var userAnswer = $(':checked').attr('id');
 	console.log(userAnswer);
 	checkAnswer(userAnswer);
 });
@@ -113,7 +114,7 @@ function trackQuestion() {
 }
 
 //This is jQuery function so the user can Try Again
-$(".quizAnswers ul").on('click','button', function() {
+$(".centerButton").on('click','button', function() {
 	score = 0;
 	curQuestion = 0;
 	$(".quizIntro").show();
