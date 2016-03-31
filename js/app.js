@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+//This is the jQuery function that starts the quiz
 	$(".start").click(function() {
 		$(".quizIntro").hide();
 		$(".quizQuestions").show();
@@ -48,6 +48,7 @@ displayQuestion();
 //This is the displayQuestion() function:
 function displayQuestion() {
 	if (curQuestion < questionsArray.length) {
+		trackQuestion();
 		var objectNum = questionsArray[curQuestion];
 		$(".quizTitle h2").html(objectNum.title);
 		var quizAnswers = "";
@@ -55,28 +56,60 @@ function displayQuestion() {
 			quizAnswers += "<li><input type='radio' id='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
 		}
 		$(".quizAnswers ul").html(quizAnswers);
-	} else {
+		$("#submit").show(); //This is needed to show submit button with questions
+	} 
+
+	else {
 		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
 		$(".quizAnswers ul").html("<button>Try Again?</button>");
-		$("#submit").hide();
+		$("#submit").hide(); //This is needed to hide submit button when quiz done
 	}	
 }
 
 //This is a jQuery function to receive the users quizAnswer once they click
 //Submit and then checkAnswer() function is called to check it and score it
 $(".quizAnswers").on('click','#submit',function() {
+	
 	var userAnswer = $(':checked');
+	console.log(userAnswer);
 	checkAnswer(userAnswer);
 });
 
 //This is the checkAnswer() function to check and score the user's answer
 function checkAnswer(userAnswer) {
 	var objectNum = questionsArray[curQuestion];
+	console.log(objectNum.correct);
 	if (userAnswer == objectNum.correct) {
 		score++;
 	}
 	curQuestion++;
 	displayQuestion();
+}
+
+//This is the tracking bar at the top of the quizQuestions
+function trackQuestion() {
+	var openCircle = '<i class="fa fa-circle-o"></i>';
+	var fullCircle = '<i class="fa fa-circle"></i>';
+	
+	function addCircles(circles){
+		$('.track').html(circles);
+	}
+
+	if (curQuestion == 0) {
+		addCircles(openCircle + fullCircle + fullCircle + fullCircle + fullCircle);
+	} 
+	else if (curQuestion == 1) {
+		addCircles(fullCircle + openCircle + fullCircle + fullCircle + fullCircle);
+	}
+	else if (curQuestion == 2) {
+		addCircles(fullCircle + fullCircle + openCircle + fullCircle + fullCircle);
+	}
+	else if (curQuestion == 3) {
+		addCircles(fullCircle + fullCircle + fullCircle + openCircle + fullCircle);
+	}
+	else {
+		addCircles(fullCircle + fullCircle + fullCircle + fullCircle + openCircle);
+	}
 }
 
 //This is jQuery function so the user can Try Again
