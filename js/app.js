@@ -45,41 +45,46 @@ var curQuestion = 0;
 //First we have to call the displayQuestion function:
 displayQuestion();
 
-//This is the displayQuestion() function:
+//This is the displayQuestion() function only
+//All it does is display the questions because the user has to click "submit"
+//before the answer can be checked
 function displayQuestion() {
+	//The if statement cycles through all questions in the questionsArray
 	if (curQuestion < questionsArray.length) {
-		trackQuestion();
-		var objectNum = questionsArray[curQuestion];
+		var objectNum = questionsArray[curQuestion]; //objectNum needed to cycle through questionsArray
 		$(".quizTitle h2").html(objectNum.title);
-		var quizAnswers = "";
+		var quizAnswers = ""; //need to clear hard coded li's in HTML
+		//The for loop enables all answers per question to be written to the HTML 
 		for(var i=0; i<objectNum.answers.length; i++) {
 			quizAnswers += "<li><input type='radio' id='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
 		}
-		$(".quizAnswers ul").html(quizAnswers);
-		$("#submit").show(); //This is needed to show submit button with questions
+		$(".quizAnswers ul").html(quizAnswers); //writes all answers per question to HTML
+		$("#submit").show(); //This is needed to show submit button with each question
+		trackQuestion(); //Need to call trackQuestion() for circles at top to work
 	} 
-
+	//The else statement is executed once all questions in the questionsArray has been displayed
 	else {
 		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
-		$(".quizAnswers ul").html("");
-		$(".centerButton").html("<button>Try Again?</button>");
+		$(".quizAnswers ul").html(""); //needed to clear quiz answers from HTML
+		$(".centerButton").html("<button>Try Again?</button>"); //adds Try Again button to HTML
 		$("#submit").hide(); //This is needed to hide submit button when quiz done
 	}	
 }
 
 //This is a jQuery function to receive the users quizAnswer once they click
-//Submit and then checkAnswer() function is called to check it and score it
+//#submit and then the checkAnswer() function is called to check it and score it
 $(".quizAnswers").on('click','#submit',function() {
-	
+	// var userAnswer is pointed to the 'id' because the 'id' is an integer
+	// this is then compared to objectNum.correct (which is also an integer) when the
+	// checkAnswer(userAnswer) function is called
 	var userAnswer = $(':checked').attr('id');
-	console.log(userAnswer);
+	//console.log(userAnswer); //used console.log to see what userAnswer was returning
 	checkAnswer(userAnswer);
 });
 
 //This is the checkAnswer() function to check and score the user's answer
 function checkAnswer(userAnswer) {
-	var objectNum = questionsArray[curQuestion];
-	console.log(objectNum.correct);
+	var objectNum = questionsArray[curQuestion]; //objectNum is needed again to cycle through questionsArray
 	if (userAnswer == objectNum.correct) {
 		score++;
 	}
