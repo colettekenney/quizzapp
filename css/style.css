@@ -27,7 +27,7 @@ ol, ul {
 body {
   background-color: #78d7d5;
   width: 100%;
-  height: 48rem;
+  height: 100%;
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -42,9 +42,9 @@ body {
 }
 
 .headerSection, .quizSection {
-  height: 47rem;
-  margin-top: 10px;
-  margin-left: 1.5rem
+  height: 1000px;
+  margin: 10px 0 10px 1.5rem;
+  
 }
 .headerSection {
   width: 40%;
