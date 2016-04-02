@@ -56,17 +56,19 @@ function displayQuestion() {
 		var quizAnswers = ""; //need to clear hard coded li's in HTML
 		//The for loop enables all answers per question to be written to the HTML 
 		for(var i=0; i<objectNum.answers.length; i++) {
-			quizAnswers += "<li><input type='radio' id='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
+			quizAnswers += "<li><input type='radio' name='answer' id='" +i+ "'/><label for='" +i+ "'>" +objectNum.answers[i]+ "</label></li>";
 		}
 		$(".quizAnswers ul").html(quizAnswers); //writes all answers per question to HTML
 		$("#submit").show(); //This is needed to show submit button with each question
+		$(".tryAgain").hide();
 		trackQuestion(); //Need to call trackQuestion() for circles at top to work
 	} 
 	//The else statement is executed once all questions in the questionsArray has been displayed
 	else {
 		$(".quizTitle h2").html("Quiz Complete! You Scored " +score+ " out of " + questionsArray.length);
 		$(".quizAnswers ul").html(""); //needed to clear quiz answers from HTML
-		$(".centerButton").html("<button>Try Again?</button>"); //adds Try Again button to HTML
+		$(".tryAgain").html("<button>Try Again?</button>"); //adds Try Again button to HTML
+		$(".tryAgain").show();
 		$("#submit").hide(); //This is needed to hide submit button when quiz done
 	}	
 }
@@ -119,11 +121,12 @@ function trackQuestion() {
 }
 
 //This is jQuery function so the user can Try Again
-$(".centerButton").on('click','button', function() {
+$(".tryAgain").on('click','button', function() {
 	score = 0;
 	curQuestion = 0;
 	$(".quizIntro").show();
 	$(".quizQuestions").hide();
+	
 	displayQuestion();
 });
 
